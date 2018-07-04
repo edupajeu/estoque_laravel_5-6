@@ -19,3 +19,6 @@ Route::get('/product', 'ProductController@list');
 Route::get('/product/detail/{id}', 'ProductController@show')->where('id', '[0-9]+');
 Route::get('/product/new', 'ProductController@new');
 Route::post('/product/add', 'ProductController@add');
+Route::get('/product/json', 'ProductController@json');
+Route::get('/product/remove/{id}', 'ProductController@remove')->where('id', '[0-9]+');
+

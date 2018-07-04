@@ -17,6 +17,7 @@ class ProductController extends Controller{
     public function show($id){
         
         $detail = DB::select('select * from produtos where id = ? ', [$id]);
+        // ESSA CONDIÇÃO NUNCA VAO ACONTECER POIS TODOS OS PRODUTOS POSSUEM ID
         if(empty($id)){
             
             return "Esse produto não possui detalhes";
@@ -47,6 +48,27 @@ class ProductController extends Controller{
         DB::insert('insert into produtos values(null, ?, ?, ?, ?)', 
         array($name, $price, $description, $amount));
 
-        return view('product.sucess', ['name' => $name]);
+        //REDIRECIONA PARA VIEW DE LISTAGEM
+        return redirect('product')->action('ProductController@list')->withInput(Request::only('name'));
+        /* DA FORMA "->withInput()" PEGA TODOS OS PARAMENTRO 
+           DA REQUISIÇÃO ANTERIOR PARA PEGAR SOMENTE UM CAMPO É 
+           NECESSÁRIO Request::only('name') 
+        */
+
+    }
+
+    public function json(){
+    
+    $products = DB::select('select * from produtos');
+    //IMPRIME A VARIAVEL NO FORMATO JSON
+    return response()->json($products);
+    }
+
+    public function remove($id){
+    
+    DB::select('select * from produtos where id = ? ', [$id])->delete();
+    // DB::table('produtos')->where('votes', '>', 100)->delete();
+
+    return redirect()->action('ProductController@list}')->withInput(Request::only('name'));
     }
 }

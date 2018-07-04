@@ -11,18 +11,26 @@
                     <th>Descrição</th>
                     <th>Quantidade</th>
                     <th>Info</th>
+                    <th>Excluir</th>
                 </thead>
                 @foreach($products as $product)
-                    <tr class="{{ $product->quantidade <= 1 ? 'danger' : '' }}">
+                  <tbody>
+
+                      <tr class="{{ $product->quantidade <= 1 ? 'danger' : '' }}">
                         <td> {{$product->nome}}</td>
                         <td> {{$product->valor}}</td>
                         <td> {{$product->descricao or 'Sem descrição'}}</td>
                         <td> {{$product->quantidade}}</td>
                         <td> <a href="/product/detail/{{$product->id}}">
-                        <span class=" glyphicon glyphicon-search"></span>
-                        </a>
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </a>
+                        </td>
+                        <td> <a href="/product/remove/{{$product->id}}">
+                                <span style="margin-left: 20px; color:red;" class=" glyphicon glyphicon-remove"></span>
+                            </a>
                         </td>
                     </tr>
+                </tbody>
                 @endforeach
         </table>
             @else
@@ -36,4 +44,11 @@
                     </span>
                 </h4>
             @endif
+            
+    @if(!empty(old('name')))
+        <div class="alert alert-success">
+            Produto: <strong>{{ old('name')}}</strong> adicionado com sucesso!
+        </div>
+    @endif
+
 @endsection

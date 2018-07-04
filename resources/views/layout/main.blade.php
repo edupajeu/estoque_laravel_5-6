@@ -15,8 +15,9 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/product">Listagem</a></li>
-                    <li><a href="/product/new">Adicionar</a></li>
+                    <li><a href="{{action('ProductController@list')}}">Listagem</a></li>
+                    <li><a href="{{action('ProductController@new')}}">Adicionar</a></li>
+                    <li><a href="{{action('ProductController@json')}}">Download</a></li>
                 </ul>
             </div>
         </nav>
@@ -25,7 +26,7 @@
 
         <footer class="footer">
             <p>
-                © Livro de Laravel do Alura.
+                © Estoque em Laravel.
             </p>
         </footer>
 
