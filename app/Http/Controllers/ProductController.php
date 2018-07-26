@@ -38,7 +38,7 @@ class ProductController extends Controller{
         // BUSCA TODAS A VARIAVEIS DO FORM
         // $all = Request::all();
         // BUSCA VARIAVEIS ESPECIFICAS DO FORM
-        // $only = Request::only('name', 'price', '...');
+        // $only = Request::only('name', 'price', '....');
 
         $name = Request::input('name');
         $price = Request::input('price');
@@ -65,8 +65,10 @@ class ProductController extends Controller{
     }
 
     public function remove($id){
-    
-    DB::select('select * from produtos where id = ? ', [$id])->delete();
+        $delete = DB::select('select * from produtos where id = ? ', [$id]);
+        // dd($delete);
+        // ['fields'][0], 'languages.value')
+         DB::delete($delete[0]);
     // DB::table('produtos')->where('votes', '>', 100)->delete();
 
     return redirect()->action('ProductController@list}')->withInput(Request::only('name'));

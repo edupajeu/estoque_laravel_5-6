@@ -10,7 +10,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">      
-                  <a class="navbar-brand" href="/product">Estoque Laravel</a>
+                  <a class="navbar-brand" href="{{action('ProductController@list')}}">Estoque Laravel</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
