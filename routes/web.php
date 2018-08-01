@@ -15,7 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/product', 'ProductController@list');
+// O "->name" FOI PASSADO PARA SIMPLIFICAR NA CHAMADA NOS CONTROLLERS
+Route::get('/product', 'ProductController@list')->name('product.list');
 Route::get('/product/detail/{id}', 'ProductController@show')->where('id', '[0-9]+');
 Route::get('/product/new', 'ProductController@new');
 Route::post('/product/add', 'ProductController@add');
